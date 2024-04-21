@@ -21,31 +21,34 @@ public class Manutencao implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
-	//private Oficina oficina;
-	private Date previsaoInicio;
 	private Date dataInicio;
 	private Date dataFinal;
-	private BigDecimal precoMaoDeObra;
+	private BigDecimal valorTotal;
 	private String audioDoMecanico;
+	private String mecanicoResponsavel;
 	
-	//private Produto precas;
+	@ManyToOne
+	@JoinColumn(name = "oficina_id")
+	private Oficina oficina;
+	
 	@ManyToOne
 	@JoinColumn(name = "veiculo_id")
 	private Veiculo veiculo;
 	
 	public Manutencao() {}
 
-	public Manutencao(Integer id, String descricao, Date previsaoInicio, Date dataInicio, Date dataFinal,
-			BigDecimal precoMaoDeObra, Veiculo veiculo, String audioDoMecanico) {
+	public Manutencao(Integer id, String descricao, Oficina oficina, Date dataInicio, Date dataFinal,
+			BigDecimal valorTotal, Veiculo veiculo, String audioDoMecanico, String mecanicoResponsavel) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
-		this.previsaoInicio = previsaoInicio;
+		this.oficina = oficina;
 		this.dataInicio = dataInicio;
 		this.dataFinal = dataFinal;
-		this.precoMaoDeObra = precoMaoDeObra;
+		this.valorTotal = valorTotal;
 		this.veiculo = veiculo;
 		this.audioDoMecanico = audioDoMecanico;
+		this.mecanicoResponsavel = mecanicoResponsavel;
 	}
 
 	public Integer getId() {
@@ -63,14 +66,15 @@ public class Manutencao implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public Date getPrevisaoInicio() {
-		return previsaoInicio;
+	
+	public Oficina getOficina() {
+		return oficina;
 	}
 
-	public void setPrevisaoInicio(Date previsaoInicio) {
-		this.previsaoInicio = previsaoInicio;
+	public void setOficina(Oficina oficina) {
+		this.oficina = oficina;
 	}
+
 
 	public Date getDataInicio() {
 		return dataInicio;
@@ -88,12 +92,12 @@ public class Manutencao implements Serializable{
 		this.dataFinal = dataFinal;
 	}
 
-	public BigDecimal getPrecoMaoDeObra() {
-		return precoMaoDeObra;
+	public BigDecimal getValorTotal() {
+		return valorTotal;
 	}
 
-	public void setPrecoMaoDeObra(BigDecimal precoMaoDeObra) {
-		this.precoMaoDeObra = precoMaoDeObra;
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 	public Veiculo getVeiculo() {
@@ -110,6 +114,14 @@ public class Manutencao implements Serializable{
 
 	public void setAudioDoMecanico(String audioDoMecanico) {
 		this.audioDoMecanico = audioDoMecanico;
+	}
+	
+	public String getMecanicoResponsavel() {
+		return mecanicoResponsavel;
+	}
+
+	public void setMecanicoResponsavel(String mecanicoResponsavel) {
+		this.mecanicoResponsavel = mecanicoResponsavel;
 	}
 	
 	@Override
@@ -131,15 +143,9 @@ public class Manutencao implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Manutencao [id=" + id + ", descricao=" + descricao + ", previsaoInicio=" + previsaoInicio
-				+ ", dataInicio=" + dataInicio + ", dataFinal=" + dataFinal + ", precoMaoDeObra=" + precoMaoDeObra
-				+ ", veiculo=" + veiculo + "]";
+		return "Manutencao [id=" + id + ", descricao=" + descricao + ", oficina=" + oficina + ", dataInicio="
+				+ dataInicio + ", dataFinal=" + dataFinal + ", valorTotal=" + valorTotal + ", audioDoMecanico="
+				+ audioDoMecanico + ", mecanicoResponsavel=" + mecanicoResponsavel + ", veiculo=" + veiculo + "]";
 	}
-
-	
-	
-	
-	
-	
 
 }

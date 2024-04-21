@@ -1,12 +1,15 @@
 package br.com.carcontrol.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Oficina implements Serializable{
@@ -18,18 +21,29 @@ public class Oficina implements Serializable{
 	private Integer id;
 	private String razaoSocial;
 	private String cNPJ;
-	//private Endereco endereco;
-	private String numeroParaContato;
+	private String cidade;
+	private String Bairro;
+	private String rua;
+	private String numero;
+	private String telefone;
+	
+	@OneToMany(mappedBy="oficina")
+	private List<Manutencao> manutencoes = new ArrayList<>();
 	
 	public Oficina() {
 	}
 
-	public Oficina(Integer id, String razaoSocial, String cNPJ, String numeroParaContato) {
+	public Oficina(Integer id, String razaoSocial, String cNPJ, String cidade, String bairro, String rua, String numero,
+			String telefone) {
 		super();
 		this.id = id;
 		this.razaoSocial = razaoSocial;
 		this.cNPJ = cNPJ;
-		this.numeroParaContato = numeroParaContato;
+		this.cidade = cidade;
+		Bairro = bairro;
+		this.rua = rua;
+		this.numero = numero;
+		this.telefone = telefone;
 	}
 
 	public Integer getId() {
@@ -56,14 +70,54 @@ public class Oficina implements Serializable{
 		this.cNPJ = cNPJ;
 	}
 
-	public String getNumeroParaContato() {
-		return numeroParaContato;
+	public String getCidade() {
+		return cidade;
 	}
 
-	public void setNumeroParaContato(String numeroParaContato) {
-		this.numeroParaContato = numeroParaContato;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
+	public String getBairro() {
+		return Bairro;
+	}
+
+	public void setBairro(String bairro) {
+		Bairro = bairro;
+	}
+
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public List<Manutencao> getManutencoes() {
+		return manutencoes;
+	}
+
+	public void setManutencoes(List<Manutencao> manutencoes) {
+		this.manutencoes = manutencoes;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -83,9 +137,13 @@ public class Oficina implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Oficina [id=" + id + ", razaoSocial=" + razaoSocial + ", cNPJ=" + cNPJ + ", numeroParaContato="
-				+ numeroParaContato + "]";
+		return "Oficina [id=" + id + ", razaoSocial=" + razaoSocial + ", cNPJ=" + cNPJ + ", cidade=" + cidade
+				+ ", Bairro=" + Bairro + ", rua=" + rua + ", numero=" + numero + ", telefone=" + telefone + "]";
 	}
+
+	
+
+	
 	
 	
 	
