@@ -1,12 +1,14 @@
 package br.com.carcontrol.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Veiculo implements Serializable{
@@ -15,19 +17,20 @@ public class Veiculo implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	private String fabricante;
 	private String modelo;
 	private String anoFabricacao;
 	private String placa;	
 	
-	public Veiculo() {
-		
-	}
+	@OneToMany(mappedBy="veiculo")
+	private List<Manutencao> manutencoes;
 	
-	public Veiculo (Long id, String fabricante, String modelo, 
+	public Veiculo() {}
+	
+	public Veiculo (Integer id, String fabricante, String modelo, 
 			String anoFabricacao, String placa) {
-		
+		super();
 		this.id = id;
 		this.fabricante = fabricante;
 		this.modelo = modelo;
@@ -36,11 +39,11 @@ public class Veiculo implements Serializable{
 		
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
