@@ -22,8 +22,8 @@ public class Condutor implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="PESSOA_ID")
-	private Pessoa pessoa;
+	@Column(name="PESSOA_NOME")
+	private String pessoaNome;
 	private Date data;
 	
 	@ManyToMany(mappedBy="condutores") 
@@ -34,7 +34,7 @@ public class Condutor implements Serializable{
 	public Condutor(Integer id, Pessoa pessoa, Date data) {
 		super();
 		this.id = id;
-		this.pessoa = pessoa;
+		this.pessoaNome = pessoa.getNome();
 		this.data = data;
 	}
 
@@ -46,12 +46,12 @@ public class Condutor implements Serializable{
 		this.id = id;
 	}
 
-	public Pessoa getPessoa() {
-		return pessoa;
+	public String getPessoa() {
+		return pessoaNome;
 	}
 
 	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+		this.pessoaNome = pessoa.getNome();
 	}
 
 	public Date getData() {
@@ -89,7 +89,7 @@ public class Condutor implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Condutor [id=" + id + ", data=" + data + "]";
+		return "Condutor [id=" + id + ", pessoaNome=" + pessoaNome + ", data=" + data + ", veiculos=" + veiculos + "]";
 	}
-	
+
 }

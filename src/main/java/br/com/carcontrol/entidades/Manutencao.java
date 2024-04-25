@@ -2,7 +2,9 @@ package br.com.carcontrol.entidades;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -11,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Manutencao implements Serializable{
@@ -24,8 +27,10 @@ public class Manutencao implements Serializable{
 	private Date dataInicio;
 	private Date dataFinal;
 	private BigDecimal valorTotal;
-	private String audioDoMecanico;
 	private String mecanicoResponsavel;
+	
+	@OneToMany(mappedBy="manutencao")
+	private List<Arquivo> arquivos = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "oficina_id")
@@ -38,7 +43,7 @@ public class Manutencao implements Serializable{
 	public Manutencao() {}
 
 	public Manutencao(Integer id, String descricao, Oficina oficina, Date dataInicio, Date dataFinal,
-			BigDecimal valorTotal, Veiculo veiculo, String audioDoMecanico, String mecanicoResponsavel) {
+			BigDecimal valorTotal, Veiculo veiculo, String mecanicoResponsavel) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -47,7 +52,6 @@ public class Manutencao implements Serializable{
 		this.dataFinal = dataFinal;
 		this.valorTotal = valorTotal;
 		this.veiculo = veiculo;
-		this.audioDoMecanico = audioDoMecanico;
 		this.mecanicoResponsavel = mecanicoResponsavel;
 	}
 
@@ -108,20 +112,20 @@ public class Manutencao implements Serializable{
 		this.veiculo = veiculo;
 	}
 
-	public String getAudioDoMecanico() {
-		return audioDoMecanico;
-	}
-
-	public void setAudioDoMecanico(String audioDoMecanico) {
-		this.audioDoMecanico = audioDoMecanico;
-	}
-	
 	public String getMecanicoResponsavel() {
 		return mecanicoResponsavel;
 	}
 
 	public void setMecanicoResponsavel(String mecanicoResponsavel) {
 		this.mecanicoResponsavel = mecanicoResponsavel;
+	}
+	
+	public List<Arquivo> getArquivos() {
+		return arquivos;
+	}
+
+	public void setArquivos(List<Arquivo> arquivos) {
+		this.arquivos = arquivos;
 	}
 	
 	@Override
@@ -143,9 +147,11 @@ public class Manutencao implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Manutencao [id=" + id + ", descricao=" + descricao + ", oficina=" + oficina + ", dataInicio="
-				+ dataInicio + ", dataFinal=" + dataFinal + ", valorTotal=" + valorTotal + ", audioDoMecanico="
-				+ audioDoMecanico + ", mecanicoResponsavel=" + mecanicoResponsavel + ", veiculo=" + veiculo + "]";
+		return "Manutencao [id=" + id + ", descricao=" + descricao + ", dataInicio=" + dataInicio + ", dataFinal="
+				+ dataFinal + ", valorTotal=" + valorTotal + ", mecanicoResponsavel=" + mecanicoResponsavel
+				+ ", oficina=" + oficina + ", veiculo=" + veiculo + "]";
 	}
+
+	
 
 }
