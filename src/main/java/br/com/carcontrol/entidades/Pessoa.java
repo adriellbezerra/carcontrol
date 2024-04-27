@@ -3,6 +3,7 @@ package br.com.carcontrol.entidades;
 import java.io.Serializable;
 import java.util.Objects;
 
+import br.com.carcontrol.entidades.enuns.TipoPessoa;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,15 +20,17 @@ public class Pessoa implements Serializable{
 	private String nome;
 	private String usuario;
 	private String senha;
+	private Integer tipo;
 	
 	public Pessoa() {}
 
-	public Pessoa(Integer id, String nome, String usuario, String senha) {
+	public Pessoa(Integer id, String nome, String usuario, String senha, TipoPessoa tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
+		this.tipo = tipo.getCod();
 	}
 
 	public Integer getId() {
@@ -60,6 +63,14 @@ public class Pessoa implements Serializable{
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public TipoPessoa getTipo() {
+		return TipoPessoa.toEnum(tipo);
+	}
+	
+	public void setTipo(TipoPessoa tipo) {
+		this.tipo = tipo.getCod();
 	}
 
 	@Override

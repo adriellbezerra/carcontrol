@@ -40,8 +40,6 @@ public class Veiculo implements Serializable{
 	
 	public Veiculo() {}
 	
-	
-
 	public Veiculo (Integer id, String fabricante, String modelo, 
 			String anoFabricacao, String chassi, String placa) {
 		super();
