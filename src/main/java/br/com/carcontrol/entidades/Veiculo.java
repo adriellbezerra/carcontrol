@@ -31,6 +31,9 @@ public class Veiculo implements Serializable{
 	@OneToMany(mappedBy="veiculo")
 	private List<Manutencao> manutencoes = new ArrayList<>();
 	
+	@OneToMany(mappedBy="veiculo")
+	private List<Verificacao> verificacoes = new ArrayList<>();
+	
 	@ManyToMany
 	@JoinTable(name = "VEICULO_CONDUTOR", 
 	joinColumns = @JoinColumn(name = "veiculo_id"), 
@@ -114,6 +117,14 @@ public class Veiculo implements Serializable{
 
 	public void setCondutores(List<Condutor> condutores) {
 		this.condutores = condutores;
+	}
+	
+	public List<Verificacao> getVerificacoes() {
+		return verificacoes;
+	}
+
+	public void setVerificacoes(List<Verificacao> verificacoes) {
+		this.verificacoes = verificacoes;
 	}
 
 	@Override

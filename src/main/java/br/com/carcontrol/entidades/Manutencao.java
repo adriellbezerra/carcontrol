@@ -23,7 +23,7 @@ public class Manutencao implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String descricao;
+	private String descricaoProblema;
 	private Date dataInicio;
 	private Date dataFinal;
 	private BigDecimal valorTotal;
@@ -42,11 +42,11 @@ public class Manutencao implements Serializable{
 	
 	public Manutencao() {}
 
-	public Manutencao(Integer id, String descricao, Oficina oficina, Date dataInicio, Date dataFinal,
+	public Manutencao(Integer id, String descricaoProblema, Oficina oficina, Date dataInicio, Date dataFinal,
 			BigDecimal valorTotal, Veiculo veiculo, String mecanicoResponsavel) {
 		super();
 		this.id = id;
-		this.descricao = descricao;
+		this.descricaoProblema = descricaoProblema;
 		this.oficina = oficina;
 		this.dataInicio = dataInicio;
 		this.dataFinal = dataFinal;
@@ -63,12 +63,12 @@ public class Manutencao implements Serializable{
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescricaoProblema() {
+		return descricaoProblema;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescricaoProblema(String descricaoProblema) {
+		this.descricaoProblema = descricaoProblema;
 	}
 	
 	public Oficina getOficina() {
@@ -147,7 +147,7 @@ public class Manutencao implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Manutencao [id=" + id + ", descricao=" + descricao + ", dataInicio=" + dataInicio + ", dataFinal="
+		return "Manutencao [id=" + id + ", descricao=" + descricaoProblema + ", dataInicio=" + dataInicio + ", dataFinal="
 				+ dataFinal + ", valorTotal=" + valorTotal + ", mecanicoResponsavel=" + mecanicoResponsavel
 				+ ", oficina=" + oficina + ", veiculo=" + veiculo + "]";
 	}

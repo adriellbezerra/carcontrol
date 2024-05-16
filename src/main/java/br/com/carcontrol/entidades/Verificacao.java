@@ -13,6 +13,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Verificacao implements Serializable{
@@ -23,6 +25,14 @@ public class Verificacao implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@ManyToOne
+	@JoinColumn(name = "veiculo_id")
+	private Veiculo veiculo;
+	
+	@ManyToOne
+	@JoinColumn(name = "condutor_id")
+	private Condutor condutor;
+	
 	private Integer quilometro;
 	private Integer agua;
 	private Integer oleo;
@@ -32,8 +42,12 @@ public class Verificacao implements Serializable{
 	private String outrasInformacoes;
 	private Date data;
 	
-	public Verificacao(Integer quilometro, Agua agua, Oleo oleo, Combustivel combustivel, 
-			Pneus pneus, Freios freios, String outrasInformacoes, Date data) {
+	public Verificacao(Integer id, Veiculo veiculo, Condutor condutor, Integer quilometro, 
+			Agua agua, Oleo oleo, Combustivel combustivel, Pneus pneus, Freios freios,
+			String outrasInformacoes, Date data) {
+		this.id = id;
+		this.veiculo = veiculo;
+		this.condutor = condutor;
 		this.quilometro = quilometro;
 		this.agua = agua.getCod();
 		this.oleo = oleo.getCod();
@@ -120,6 +134,22 @@ public class Verificacao implements Serializable{
 	public void setData(Date data) {
 		this.data = data;
 	}
+	
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+
+	public Condutor getCondutor() {
+		return condutor;
+	}
+
+	public void setCondutor(Condutor condutor) {
+		this.condutor = condutor;
+	}
 
 	@Override
 	public int hashCode() {
@@ -140,19 +170,9 @@ public class Verificacao implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Verificacao [id=" + id + ", quilometro=" + quilometro + ", agua=" + agua + ", oleo=" + oleo
-				+ ", combustivel=" + combustivel + ", pneus=" + pneus + ", freios=" + freios + ", outrasInformacoes="
-				+ outrasInformacoes + ", data=" + data + "]";
+		return "Verificacao [id=" + id + ", veiculo=" + veiculo + ", condutor=" + condutor + ", quilometro="
+				+ quilometro + ", agua=" + agua + ", oleo=" + oleo + ", combustivel=" + combustivel + ", pneus=" + pneus
+				+ ", freios=" + freios + ", outrasInformacoes=" + outrasInformacoes + ", data=" + data + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

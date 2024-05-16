@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Condutor implements Serializable{
@@ -28,6 +29,9 @@ public class Condutor implements Serializable{
 	
 	@ManyToMany(mappedBy="condutores") 
 	private List<Veiculo> veiculos = new ArrayList<>();
+	
+	@OneToMany(mappedBy="condutor")
+	private List<Verificacao> verificacoes = new ArrayList<>();
 	
 	public Condutor() {}
 
@@ -68,6 +72,14 @@ public class Condutor implements Serializable{
 
 	public void setVeiculos(List<Veiculo> veiculos) {
 		this.veiculos = veiculos;
+	}
+	
+	public List<Verificacao> getVerificacoes() {
+		return verificacoes;
+	}
+
+	public void setVerificacoes(List<Verificacao> verificacoes) {
+		this.verificacoes = verificacoes;
 	}
 	
 	@Override
