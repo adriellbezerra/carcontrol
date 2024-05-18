@@ -32,6 +32,9 @@ public class Manutencao implements Serializable{
 	@OneToMany(mappedBy="manutencao")
 	private List<Arquivo> arquivos = new ArrayList<>();
 	
+	@OneToMany(mappedBy="manutencao")
+	private List<Interacao> interacoes = new ArrayList<>();
+	
 	@ManyToOne
 	@JoinColumn(name = "oficina_id")
 	private Oficina oficina;
@@ -126,6 +129,14 @@ public class Manutencao implements Serializable{
 
 	public void setArquivos(List<Arquivo> arquivos) {
 		this.arquivos = arquivos;
+	}
+	
+	public List<Interacao> getInteracoes() {
+		return interacoes;
+	}
+
+	public void setInteracoes(List<Interacao> interacoes) {
+		this.interacoes = interacoes;
 	}
 	
 	@Override
