@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import br.com.carcontrol.entidades.enuns.TipoManutencao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +24,8 @@ public class Manutencao implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private Integer tipoManutencao;
+	private Integer quilometro;
 	private String descricaoProblema;
 	private Date dataInicio;
 	private Date dataFinal;
@@ -45,10 +48,11 @@ public class Manutencao implements Serializable{
 	
 	public Manutencao() {}
 
-	public Manutencao(Integer id, String descricaoProblema, Oficina oficina, Date dataInicio, Date dataFinal,
-			BigDecimal valorTotal, Veiculo veiculo, String mecanicoResponsavel) {
+	public Manutencao(Integer id, Integer quilometro, String descricaoProblema, Oficina oficina, Date dataInicio, Date dataFinal,
+			BigDecimal valorTotal, Veiculo veiculo, String mecanicoResponsavel, TipoManutencao tipoManutencao) {
 		super();
 		this.id = id;
+		this.quilometro = quilometro;
 		this.descricaoProblema = descricaoProblema;
 		this.oficina = oficina;
 		this.dataInicio = dataInicio;
@@ -56,6 +60,7 @@ public class Manutencao implements Serializable{
 		this.valorTotal = valorTotal;
 		this.veiculo = veiculo;
 		this.mecanicoResponsavel = mecanicoResponsavel;
+		this.tipoManutencao = tipoManutencao.getCod();
 	}
 
 	public Integer getId() {
@@ -64,6 +69,14 @@ public class Manutencao implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public Integer getQuilometro() {
+		return quilometro;
+	}
+
+	public void setQuilometro(Integer quilometro) {
+		this.quilometro = quilometro;
 	}
 
 	public String getDescricaoProblema() {
@@ -137,6 +150,14 @@ public class Manutencao implements Serializable{
 
 	public void setInteracoes(List<Interacao> interacoes) {
 		this.interacoes = interacoes;
+	}
+	
+	public TipoManutencao getTipoManutencao() {
+		return TipoManutencao.toEnum(tipoManutencao);
+	}
+	
+	public void setTipoManutencao(TipoManutencao tipoManutencao) {
+		this.tipoManutencao = tipoManutencao.getCod();
 	}
 	
 	@Override
