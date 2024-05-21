@@ -135,20 +135,4 @@ public class Oficina implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "Oficina [id=" + id + ", razaoSocial=" + razaoSocial + ", cNPJ=" + cNPJ + ", cidade=" + cidade
-				+ ", Bairro=" + Bairro + ", rua=" + rua + ", numero=" + numero + ", telefone=" + telefone + "]";
-	}
-
-	
-
-	
-	
-	
-	
-	
-	
-	
-
 }

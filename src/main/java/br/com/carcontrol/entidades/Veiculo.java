@@ -110,14 +110,6 @@ public class Veiculo implements Serializable{
 	public void setManutencoes(List<Manutencao> manutencoes) {
 		this.manutencoes = manutencoes;
 	}
-
-	public List<Condutor> getCondutores() {
-		return condutores;
-	}
-
-	public void setCondutores(List<Condutor> condutores) {
-		this.condutores = condutores;
-	}
 	
 	public List<Verificacao> getVerificacoes() {
 		return verificacoes;
@@ -127,6 +119,14 @@ public class Veiculo implements Serializable{
 		this.verificacoes = verificacoes;
 	}
 
+	public List<Condutor> getCondutores() {
+		return condutores;
+	}
+
+	public void setCondutores(List<Condutor> condutores) {
+		this.condutores = condutores;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -143,13 +143,5 @@ public class Veiculo implements Serializable{
 		Veiculo other = (Veiculo) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	@Override
-	public String toString() {
-		return "Veiculo [id=" + id + ", fabricante=" + fabricante + ", modelo=" + modelo + ", anoFabricacao="
-				+ anoFabricacao + ", placa=" + placa + "]";
-	}
-
-	
 
 }

@@ -25,6 +25,7 @@ public class Condutor implements Serializable{
 	
 	@Column(name="PESSOA_NOME")
 	private String pessoaNome;
+	
 	private Date data;
 	
 	@ManyToMany(mappedBy="condutores") 
@@ -97,11 +98,6 @@ public class Condutor implements Serializable{
 			return false;
 		Condutor other = (Condutor) obj;
 		return Objects.equals(id, other.id);
-	}
-
-	@Override
-	public String toString() {
-		return "Condutor [id=" + id + ", pessoaNome=" + pessoaNome + ", data=" + data + ", veiculos=" + veiculos + "]";
 	}
 
 }

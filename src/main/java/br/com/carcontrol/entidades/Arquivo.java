@@ -28,11 +28,12 @@ public class Arquivo implements Serializable{
 	public Arquivo() {		
 	}
 
-	public Arquivo(Integer id, String descricao, String caminho) {
+	public Arquivo(Integer id, String descricao, String caminho, Manutencao manutencao) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.caminho = caminho;
+		this.manutencao = manutencao;
 	}
 
 	public Integer getId() {
@@ -82,11 +83,6 @@ public class Arquivo implements Serializable{
 			return false;
 		Arquivo other = (Arquivo) obj;
 		return Objects.equals(id, other.id);
-	}
-
-	@Override
-	public String toString() {
-		return "Arquivo [id=" + id + ", descricao=" + descricao + ", caminho=" + caminho + "]";
 	}
 	
 }

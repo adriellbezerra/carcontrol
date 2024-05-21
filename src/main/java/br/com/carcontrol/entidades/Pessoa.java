@@ -89,10 +89,5 @@ public class Pessoa implements Serializable{
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", usuario=" + usuario + ", senha=" + senha + "]";
-	}
 	
 }

@@ -56,7 +56,6 @@ public class Verificacao implements Serializable{
 		this.freios = freios.getCod();
 		this.outrasInformacoes = outrasInformacoes;
 		this.data = data;
-		
 	}
 	
 	public Verificacao() {
@@ -166,13 +165,6 @@ public class Verificacao implements Serializable{
 			return false;
 		Verificacao other = (Verificacao) obj;
 		return Objects.equals(id, other.id);
-	}
-
-	@Override
-	public String toString() {
-		return "Verificacao [id=" + id + ", veiculo=" + veiculo + ", condutor=" + condutor + ", quilometro="
-				+ quilometro + ", agua=" + agua + ", oleo=" + oleo + ", combustivel=" + combustivel + ", pneus=" + pneus
-				+ ", freios=" + freios + ", outrasInformacoes=" + outrasInformacoes + ", data=" + data + "]";
 	}
 
 }

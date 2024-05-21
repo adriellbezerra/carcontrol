@@ -48,10 +48,11 @@ public class Manutencao implements Serializable{
 	
 	public Manutencao() {}
 
-	public Manutencao(Integer id, Integer quilometro, String descricaoProblema, Oficina oficina, Date dataInicio, Date dataFinal,
-			BigDecimal valorTotal, Veiculo veiculo, String mecanicoResponsavel, TipoManutencao tipoManutencao) {
+	public Manutencao(Integer id, TipoManutencao tipoManutencao, Integer quilometro, String descricaoProblema, Oficina oficina, Date dataInicio, Date dataFinal,
+			BigDecimal valorTotal, Veiculo veiculo, String mecanicoResponsavel) {
 		super();
 		this.id = id;
+		this.tipoManutencao = tipoManutencao.getCod();
 		this.quilometro = quilometro;
 		this.descricaoProblema = descricaoProblema;
 		this.oficina = oficina;
@@ -60,7 +61,6 @@ public class Manutencao implements Serializable{
 		this.valorTotal = valorTotal;
 		this.veiculo = veiculo;
 		this.mecanicoResponsavel = mecanicoResponsavel;
-		this.tipoManutencao = tipoManutencao.getCod();
 	}
 
 	public Integer getId() {
@@ -69,6 +69,14 @@ public class Manutencao implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public TipoManutencao getTipoManutencao() {
+		return TipoManutencao.toEnum(tipoManutencao);
+	}
+	
+	public void setTipoManutencao(TipoManutencao tipoManutencao) {
+		this.tipoManutencao = tipoManutencao.getCod();
 	}
 	
 	public Integer getQuilometro() {
@@ -94,7 +102,6 @@ public class Manutencao implements Serializable{
 	public void setOficina(Oficina oficina) {
 		this.oficina = oficina;
 	}
-
 
 	public Date getDataInicio() {
 		return dataInicio;
@@ -152,14 +159,6 @@ public class Manutencao implements Serializable{
 		this.interacoes = interacoes;
 	}
 	
-	public TipoManutencao getTipoManutencao() {
-		return TipoManutencao.toEnum(tipoManutencao);
-	}
-	
-	public void setTipoManutencao(TipoManutencao tipoManutencao) {
-		this.tipoManutencao = tipoManutencao.getCod();
-	}
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -176,14 +175,5 @@ public class Manutencao implements Serializable{
 		Manutencao other = (Manutencao) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	@Override
-	public String toString() {
-		return "Manutencao [id=" + id + ", descricao=" + descricaoProblema + ", dataInicio=" + dataInicio + ", dataFinal="
-				+ dataFinal + ", valorTotal=" + valorTotal + ", mecanicoResponsavel=" + mecanicoResponsavel
-				+ ", oficina=" + oficina + ", veiculo=" + veiculo + "]";
-	}
-
-	
 
 }
