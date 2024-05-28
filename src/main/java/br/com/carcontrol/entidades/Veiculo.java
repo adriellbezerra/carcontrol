@@ -9,9 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -33,13 +30,6 @@ public class Veiculo implements Serializable{
 	
 	@OneToMany(mappedBy="veiculo")
 	private List<Verificacao> verificacoes = new ArrayList<>();
-	
-	@ManyToMany
-	@JoinTable(name = "VEICULO_CONDUTOR", 
-	joinColumns = @JoinColumn(name = "veiculo_id"), 
-	inverseJoinColumns = @JoinColumn(name = "condutor_id") 
-	)
-	private List<Condutor> condutores = new ArrayList<>();
 	
 	public Veiculo() {}
 	
@@ -119,14 +109,6 @@ public class Veiculo implements Serializable{
 		this.verificacoes = verificacoes;
 	}
 
-	public List<Condutor> getCondutores() {
-		return condutores;
-	}
-
-	public void setCondutores(List<Condutor> condutores) {
-		this.condutores = condutores;
-	}
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

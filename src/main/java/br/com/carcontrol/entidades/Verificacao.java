@@ -29,10 +29,7 @@ public class Verificacao implements Serializable{
 	@JoinColumn(name = "veiculo_id")
 	private Veiculo veiculo;
 	
-	@ManyToOne
-	@JoinColumn(name = "condutor_id")
-	private Condutor condutor;
-	
+	private Integer condutor;
 	private Integer quilometro;
 	private Integer agua;
 	private Integer oleo;
@@ -42,12 +39,12 @@ public class Verificacao implements Serializable{
 	private String outrasInformacoes;
 	private Date data;
 	
-	public Verificacao(Integer id, Veiculo veiculo, Condutor condutor, Integer quilometro, 
+	public Verificacao(Integer id, Veiculo veiculo, Pessoa pessoa, Integer quilometro, 
 			Agua agua, Oleo oleo, Combustivel combustivel, Pneus pneus, Freios freios,
 			String outrasInformacoes, Date data) {
 		this.id = id;
 		this.veiculo = veiculo;
-		this.condutor = condutor;
+		this.condutor = pessoa.getId();
 		this.quilometro = quilometro;
 		this.agua = agua.getCod();
 		this.oleo = oleo.getCod();
@@ -142,12 +139,12 @@ public class Verificacao implements Serializable{
 		this.veiculo = veiculo;
 	}
 
-	public Condutor getCondutor() {
+	public Integer getCondutor() {
 		return condutor;
 	}
 
-	public void setCondutor(Condutor condutor) {
-		this.condutor = condutor;
+	public void setCondutor(Pessoa condutor) {
+		this.condutor = condutor.getId();
 	}
 
 	@Override
