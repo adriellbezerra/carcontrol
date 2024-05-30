@@ -2,7 +2,7 @@ package br.com.carcontrol.entidades.enuns;
 
 public enum TipoPessoa {
 	
-	SUPERVISAO(1, "Supervisor"),
+	SUPERVISOR(1, "Supervisor"),
 	CONDUTOR(2, "Condutor");
 	
 	private int cod;
