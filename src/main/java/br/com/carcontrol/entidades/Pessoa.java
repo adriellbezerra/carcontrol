@@ -1,6 +1,8 @@
 package br.com.carcontrol.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import br.com.carcontrol.entidades.enuns.TipoPessoa;
@@ -8,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Pessoa implements Serializable{
@@ -21,6 +24,9 @@ public class Pessoa implements Serializable{
 	private String usuario;
 	private String senha;
 	private Integer tipo;
+	
+	@OneToMany(mappedBy="condutor")
+	private List<Verificacao> verificacoes = new ArrayList<>();
 	
 	public Pessoa() {}
 
@@ -71,6 +77,14 @@ public class Pessoa implements Serializable{
 	
 	public void setTipo(TipoPessoa tipo) {
 		this.tipo = tipo.getCod();
+	}
+	
+	public List<Verificacao> getVerificacoes() {
+		return verificacoes;
+	}
+
+	public void setVerificacoes(List<Verificacao> verificacoes) {
+		this.verificacoes = verificacoes;
 	}
 
 	@Override

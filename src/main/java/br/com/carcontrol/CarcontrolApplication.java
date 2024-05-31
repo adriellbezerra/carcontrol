@@ -22,7 +22,6 @@ import br.com.carcontrol.repositorios.OficinaRepository;
 import br.com.carcontrol.repositorios.PessoaRepository;
 import br.com.carcontrol.repositorios.VeiculoRepository;
 import br.com.carcontrol.repositorios.VerificacaoRepository;
-import br.com.carcontrol.servicos.PessoaService;
 
 @SpringBootApplication
 public class CarcontrolApplication implements CommandLineRunner{
@@ -38,9 +37,6 @@ public class CarcontrolApplication implements CommandLineRunner{
 	
 	@Autowired
 	private VerificacaoRepository verificacaoRepository;
-	
-	@Autowired
-	private PessoaService pessoaService;
 	
 	public static void main(String[] args){
 		SpringApplication.run(CarcontrolApplication.class, args);
@@ -63,11 +59,9 @@ public class CarcontrolApplication implements CommandLineRunner{
 		veiculoRepository.saveAll(Arrays.asList(v1, v2));
 		oficinaRepository.saveAll(Arrays.asList(o1, o2));
 		
-		Pessoa p1banco = pessoaService.procurar(1);
-		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Verificacao ve = new Verificacao(null, v1, p1banco, 123493, Agua.NORMAL, Oleo.NORMAL, Combustivel.CHEIO, Pneus.BOM_ESTADO, Freios.NORMAL, "Tudo Normal", sdf.parse("25/02/2024"));
+		Verificacao ve = new Verificacao(null, v1, p1, 123493, Agua.NORMAL, Oleo.NORMAL, Combustivel.CHEIO, Pneus.BOM_ESTADO, Freios.NORMAL, "Tudo Normal", sdf.parse("25/02/2024"));
 		
 		verificacaoRepository.saveAll(Arrays.asList(ve));
 		
