@@ -25,6 +25,7 @@ public class Pessoa implements Serializable{
 	private String senha;
 	private Integer tipo;
 	
+	//fetch = FetchType.EAGER
 	@OneToMany(mappedBy="condutor")
 	private List<Verificacao> verificacoes = new ArrayList<>();
 	
