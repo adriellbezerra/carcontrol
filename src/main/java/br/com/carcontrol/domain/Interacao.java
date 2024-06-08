@@ -1,6 +1,7 @@
-package br.com.carcontrol.entidades;
+package br.com.carcontrol.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -11,55 +12,55 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Arquivo implements Serializable{
+public class Interacao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	private Date data;
 	private String descricao;
-	private String caminho;
 	
 	@ManyToOne
 	@JoinColumn(name = "manutencao_id")
 	private Manutencao manutencao;
 	
-	public Arquivo() {		
-	}
-
-	public Arquivo(Integer id, String descricao, String caminho, Manutencao manutencao) {
+	public Interacao() {}
+	
+	public Interacao(Integer id, Date data, String descricao, Manutencao manutencao) {
 		super();
 		this.id = id;
+		this.data = data;
 		this.descricao = descricao;
-		this.caminho = caminho;
 		this.manutencao = manutencao;
 	}
 
 	public Integer getId() {
 		return id;
 	}
-
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	
+	public Date getData() {
+		return data;
+	}
+	
+	public void setData(Date data) {
+		this.data = data;
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
-
+	
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public String getCaminho() {
-		return caminho;
-	}
-
-	public void setCaminho(String caminho) {
-		this.caminho = caminho;
-	}
-
+	
 	public Manutencao getManutencao() {
 		return manutencao;
 	}
@@ -67,12 +68,11 @@ public class Arquivo implements Serializable{
 	public void setManutencao(Manutencao manutencao) {
 		this.manutencao = manutencao;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -81,8 +81,8 @@ public class Arquivo implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Arquivo other = (Arquivo) obj;
+		Interacao other = (Interacao) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 }

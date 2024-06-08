@@ -1,17 +1,17 @@
-package br.com.carcontrol.entidades.enuns.verificacoes;
+package br.com.carcontrol.domain.enuns.verificacoes;
 
-public enum Oleo {
+public enum Agua {
 	
 	NORMAL(1, "Normal"),
 	BAIXO(2, "Abaixo do nível aceitável"),
-	ESCURO(3, "Óleo escuro demais"),
-	VAZIO(4, "Reservatório totalmente vazio");
+	VAZIO(3, "Reservatório vazio");
+	
 	
 	
 	private int cod;
 	private String descricao;
 	
-	private Oleo (int cod, String descricao) {
+	private Agua (int cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
 	}
@@ -24,12 +24,12 @@ public enum Oleo {
 		return descricao;
 	}
 
-	public static Oleo toEnum(Integer id) {
+	public static Agua toEnum(Integer id) {
 		if(id == null) {
 			return null;
 		}
 		
-		for (Oleo x : Oleo.values()) {
+		for (Agua x : Agua.values()) {
 			if (id.equals(x.getCod())) {
 				return x;
 			}

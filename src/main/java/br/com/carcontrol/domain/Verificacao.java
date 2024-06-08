@@ -1,14 +1,16 @@
-package br.com.carcontrol.entidades;
+package br.com.carcontrol.domain;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-import br.com.carcontrol.entidades.enuns.verificacoes.Agua;
-import br.com.carcontrol.entidades.enuns.verificacoes.Combustivel;
-import br.com.carcontrol.entidades.enuns.verificacoes.Freios;
-import br.com.carcontrol.entidades.enuns.verificacoes.Oleo;
-import br.com.carcontrol.entidades.enuns.verificacoes.Pneus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.carcontrol.domain.enuns.verificacoes.Agua;
+import br.com.carcontrol.domain.enuns.verificacoes.Combustivel;
+import br.com.carcontrol.domain.enuns.verificacoes.Freios;
+import br.com.carcontrol.domain.enuns.verificacoes.Oleo;
+import br.com.carcontrol.domain.enuns.verificacoes.Pneus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,12 +27,14 @@ public class Verificacao implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "veiculo_id")
 	private Veiculo veiculo;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "pessoa_id")
+	@JoinColumn(name = "condutor_id")
 	private Pessoa condutor;
 	
 	private Integer quilometro;
@@ -138,17 +142,14 @@ public class Verificacao implements Serializable{
 		return veiculo;
 	}
 
-	public void setVeiculo(Veiculo veiculo) {
-		this.veiculo = veiculo;
-	}
-
 	public Pessoa getCondutor() {
 		return condutor;
 	}
 
-	public void setCondutor(Pessoa condutor) {
-		this.condutor = condutor;
+	public void setCondutor(Pessoa pessoa) {
+		this.condutor = pessoa;
 	}
+	 
 
 	@Override
 	public int hashCode() {

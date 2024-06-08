@@ -1,11 +1,12 @@
-package br.com.carcontrol.entidades;
+package br.com.carcontrol.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import br.com.carcontrol.entidades.enuns.TipoPessoa;
+import br.com.carcontrol.domain.enuns.TipoPessoa;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,8 +26,7 @@ public class Pessoa implements Serializable{
 	private String senha;
 	private Integer tipo;
 	
-	//fetch = FetchType.EAGER
-	@OneToMany(mappedBy="condutor")
+	@OneToMany(mappedBy = "condutor", cascade = CascadeType.ALL)
 	private List<Verificacao> verificacoes = new ArrayList<>();
 	
 	public Pessoa() {}
@@ -87,7 +87,7 @@ public class Pessoa implements Serializable{
 	public void setVerificacoes(List<Verificacao> verificacoes) {
 		this.verificacoes = verificacoes;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

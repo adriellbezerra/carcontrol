@@ -1,4 +1,4 @@
-package br.com.carcontrol.entidades;
+package br.com.carcontrol.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -7,7 +7,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import br.com.carcontrol.entidades.enuns.TipoManutencao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.carcontrol.domain.enuns.TipoManutencao;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,16 +35,18 @@ public class Manutencao implements Serializable{
 	private BigDecimal valorTotal;
 	private String mecanicoResponsavel;
 	
-	@OneToMany(mappedBy="manutencao")
+	@OneToMany(mappedBy="manutencao", cascade = CascadeType.ALL)
 	private List<Arquivo> arquivos = new ArrayList<>();
 	
-	@OneToMany(mappedBy="manutencao")
+	@OneToMany(mappedBy="manutencao", cascade = CascadeType.ALL)
 	private List<Interacao> interacoes = new ArrayList<>();
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "oficina_id")
 	private Oficina oficina;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "veiculo_id")
 	private Veiculo veiculo;

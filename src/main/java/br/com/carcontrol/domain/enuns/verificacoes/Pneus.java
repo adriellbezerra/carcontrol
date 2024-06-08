@@ -1,4 +1,4 @@
-package br.com.carcontrol.entidades.enuns.verificacoes;
+package br.com.carcontrol.domain.enuns.verificacoes;
 
 public enum Pneus {
 	

@@ -1,4 +1,4 @@
-package br.com.carcontrol.entidades.enuns;
+package br.com.carcontrol.domain.enuns;
 
 public enum TipoManutencao {
 	

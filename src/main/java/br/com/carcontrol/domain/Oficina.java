@@ -1,4 +1,4 @@
-package br.com.carcontrol.entidades;
+package br.com.carcontrol.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
