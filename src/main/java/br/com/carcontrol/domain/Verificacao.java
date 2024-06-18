@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.com.carcontrol.domain.enuns.verificacoes.Agua;
 import br.com.carcontrol.domain.enuns.verificacoes.Combustivel;
 import br.com.carcontrol.domain.enuns.verificacoes.Freios;
@@ -27,12 +25,12 @@ public class Verificacao implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "veiculo_id")
 	private Veiculo veiculo;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "condutor_id")
 	private Pessoa condutor;

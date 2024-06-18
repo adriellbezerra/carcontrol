@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.carcontrol.domain.enuns.TipoPessoa;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -26,6 +28,7 @@ public class Pessoa implements Serializable{
 	private String senha;
 	private Integer tipo;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "condutor", cascade = CascadeType.ALL)
 	private List<Verificacao> verificacoes = new ArrayList<>();
 	

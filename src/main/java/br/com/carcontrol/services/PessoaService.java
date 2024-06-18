@@ -1,6 +1,5 @@
 package br.com.carcontrol.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
@@ -22,8 +21,8 @@ public class PessoaService {
 				"Objeto não encontrado!", id));
 	}
 	
-	public List<Pessoa> findAll() {
-		return pessoaRepository.findAll();
-	}
+	
+	
+	
 	
 }

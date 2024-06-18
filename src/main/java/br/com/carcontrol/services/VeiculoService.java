@@ -1,5 +1,6 @@
 package br.com.carcontrol.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
@@ -15,7 +16,11 @@ public class VeiculoService {
 	@Autowired
 	private VeiculoRepository veiculoRepository;
 
-	public Veiculo findById(Integer id) {
+	public List<Veiculo> findAll() {
+		return veiculoRepository.findAll();
+	}
+	
+		public Veiculo findById(Integer id) {
 		Optional<Veiculo> obj = veiculoRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado!", id));
