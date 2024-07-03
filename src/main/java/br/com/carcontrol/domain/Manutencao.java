@@ -30,6 +30,8 @@ public class Manutencao implements Serializable{
 	private Integer tipoManutencao;
 	private Integer quilometro;
 	private String descricaoProblema;
+	private String descricaoSolucao;
+	
 	private Date dataInicio;
 	private Date dataFinal;
 	private BigDecimal valorTotal;
@@ -37,10 +39,6 @@ public class Manutencao implements Serializable{
 	
 	@OneToMany(mappedBy="manutencao", cascade = CascadeType.ALL)
 	private List<Arquivo> arquivos = new ArrayList<>();
-	
-	@OneToMany(mappedBy="manutencao", cascade = CascadeType.ALL)
-	private List<Interacao> interacoes = new ArrayList<>();
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "oficina_id")
@@ -53,13 +51,14 @@ public class Manutencao implements Serializable{
 	
 	public Manutencao() {}
 
-	public Manutencao(Integer id, TipoManutencao tipoManutencao, Integer quilometro, String descricaoProblema, Oficina oficina, Date dataInicio, Date dataFinal,
+	public Manutencao(Integer id, TipoManutencao tipoManutencao, Integer quilometro, String descricaoProblema, String descricaoSolucao, Oficina oficina, Date dataInicio, Date dataFinal,
 			BigDecimal valorTotal, Veiculo veiculo, String mecanicoResponsavel) {
 		super();
 		this.id = id;
 		this.tipoManutencao = tipoManutencao.getCod();
 		this.quilometro = quilometro;
 		this.descricaoProblema = descricaoProblema;
+		this.descricaoSolucao = descricaoSolucao;
 		this.oficina = oficina;
 		this.dataInicio = dataInicio;
 		this.dataFinal = dataFinal;
@@ -98,6 +97,14 @@ public class Manutencao implements Serializable{
 
 	public void setDescricaoProblema(String descricaoProblema) {
 		this.descricaoProblema = descricaoProblema;
+	}
+	
+	public String getDescricaoSolucao() {
+		return descricaoSolucao;
+	}
+
+	public void setDescricaoSolucao(String descricaoSolucao) {
+		this.descricaoSolucao = descricaoSolucao;
 	}
 	
 	public Oficina getOficina() {
@@ -154,14 +161,6 @@ public class Manutencao implements Serializable{
 
 	public void setArquivos(List<Arquivo> arquivos) {
 		this.arquivos = arquivos;
-	}
-	
-	public List<Interacao> getInteracoes() {
-		return interacoes;
-	}
-
-	public void setInteracoes(List<Interacao> interacoes) {
-		this.interacoes = interacoes;
 	}
 	
 	@Override

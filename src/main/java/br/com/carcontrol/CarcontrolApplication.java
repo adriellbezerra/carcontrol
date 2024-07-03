@@ -3,7 +3,6 @@ package br.com.carcontrol;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,7 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.carcontrol.domain.Arquivo;
-import br.com.carcontrol.domain.Interacao;
 import br.com.carcontrol.domain.Manutencao;
 import br.com.carcontrol.domain.Oficina;
 import br.com.carcontrol.domain.Pessoa;
@@ -25,7 +23,6 @@ import br.com.carcontrol.domain.enuns.verificacoes.Freios;
 import br.com.carcontrol.domain.enuns.verificacoes.Oleo;
 import br.com.carcontrol.domain.enuns.verificacoes.Pneus;
 import br.com.carcontrol.repositories.ArquivoRepository;
-import br.com.carcontrol.repositories.InteracaoRepository;
 import br.com.carcontrol.repositories.ManutencaoRepository;
 import br.com.carcontrol.repositories.OficinaRepository;
 import br.com.carcontrol.repositories.PessoaRepository;
@@ -49,9 +46,6 @@ public class CarcontrolApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ManutencaoRepository manutencaoRepository;
-	
-	@Autowired
-	private InteracaoRepository interacaoRepository;
 	
 	@Autowired
 	private ArquivoRepository arquivoRepository;
@@ -110,19 +104,15 @@ public class CarcontrolApplication implements CommandLineRunner{
 		v2.getVerificacoes().addAll(Arrays.asList(veL1, veL2, veL3, veL4));
 		v7.getVerificacoes().addAll(Arrays.asList(veW1, veW2));
 		
-		Manutencao m1v7 = new Manutencao(null, TipoManutencao.PREVENTIVA, 26030, "Trocar Óleo", o1, sdf.parse("27/02/2024"), sdf.parse("27/02/2024"), new BigDecimal(40.00) , v7, "Mecânico da Alinhacar");
+		Manutencao m1v7 = new Manutencao(null, TipoManutencao.PREVENTIVA, 26030, "Trocar Óleo", "Feito a troca do óleo", o1, sdf.parse("27/02/2024"), sdf.parse("27/02/2024"), new BigDecimal(40.00) , v7, "Mecânico da Alinhacar");
 		v7.getManutencoes().addAll(Arrays.asList(m1v7));
 		o1.getManutencoes().addAll(Arrays.asList(m1v7));
-		
-		Interacao inM1v7 = new Interacao(null, sdf.parse("27/02/2024"), "Iniciada e finalizada a troca de óleo", m1v7);
-		m1v7.getInteracoes().addAll(Arrays.asList(inM1v7));
 		
 		Arquivo arM1v7 = new Arquivo(null, "Óleo que colocado", "https://drive.google.com/file/d/1_aHAaynLEpgqB4jjJZbY19YS3kN4qNrk/view?usp=sharing", m1v7);
 		m1v7.getArquivos().addAll(Arrays.asList(arM1v7));
 				
 		verificacaoRepository.saveAll(Arrays.asList(veM1, veM2, veM3, veM4, veL1, veL2, veL3, veL4, veW1, veW2));
 		manutencaoRepository.saveAll(Arrays.asList(m1v7));
-		interacaoRepository.saveAll(Arrays.asList(inM1v7));
 		arquivoRepository.saveAll(Arrays.asList(arM1v7));
 		
 		
