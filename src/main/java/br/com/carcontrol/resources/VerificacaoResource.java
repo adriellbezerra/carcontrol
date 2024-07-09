@@ -25,5 +25,11 @@ public class VerificacaoResource {
 		return ResponseEntity.ok().body(verificacoes);
 	}
 	
+	@GetMapping("condutor/{id}")
+	public ResponseEntity<List<Verificacao>> findByCondutor(@PathVariable Integer id) {
+		List<Verificacao> verificacoes = verificacaoService.findByCondutor(id);
+		return ResponseEntity.ok().body(verificacoes);
+	}
+	
 	
 }
