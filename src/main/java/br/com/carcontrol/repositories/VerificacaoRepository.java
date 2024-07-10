@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import br.com.carcontrol.domain.Pessoa;
 import br.com.carcontrol.domain.Veiculo;
 import br.com.carcontrol.domain.Verificacao;
+import java.util.Date;
+
 
 
 @Repository
@@ -16,5 +18,7 @@ public interface VerificacaoRepository extends JpaRepository<Verificacao, Intege
 	List<Verificacao> findByVeiculo(Veiculo veiculo);
 	
 	List<Verificacao> findByCondutor(Pessoa condutor);
+	
+	List<Verificacao> findByData(Date data);
 	
 }

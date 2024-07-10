@@ -1,5 +1,6 @@
 package br.com.carcontrol.resources;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,12 @@ public class VerificacaoResource {
 	@GetMapping("condutor/{id}")
 	public ResponseEntity<List<Verificacao>> findByCondutor(@PathVariable Integer id) {
 		List<Verificacao> verificacoes = verificacaoService.findByCondutor(id);
+		return ResponseEntity.ok().body(verificacoes);
+	}
+	
+	@GetMapping("/{data}")
+	public ResponseEntity<List<Verificacao>> findByData(@PathVariable String data){
+		List<Verificacao> verificacoes = verificacaoService.findByData(data);
 		return ResponseEntity.ok().body(verificacoes);
 	}
 	

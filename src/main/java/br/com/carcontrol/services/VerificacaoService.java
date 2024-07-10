@@ -1,5 +1,7 @@
 package br.com.carcontrol.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,16 @@ public class VerificacaoService {
 		return  verificacaoRepository.findByCondutor(pessoa);
 	}
 	
+	public List<Verificacao> findByData(String data){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		try {
+			return  verificacaoRepository.findByData(sdf.parse(data));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 	
