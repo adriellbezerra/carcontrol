@@ -1,6 +1,5 @@
 package br.com.carcontrol.resources;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.carcontrol.domain.Verificacao;
+import br.com.carcontrol.domain.dto.VerificacaoDTO;
 import br.com.carcontrol.services.VerificacaoService;
 
 @RestController
@@ -21,21 +20,21 @@ public class VerificacaoResource {
 	private VerificacaoService verificacaoService;
 	
 	@GetMapping("veiculo/{id}")
-	public ResponseEntity<List<Verificacao>> findByVeiculo(@PathVariable Integer id) {
-		List<Verificacao> verificacoes = verificacaoService.findByVeiculo(id);
-		return ResponseEntity.ok().body(verificacoes);
+	public ResponseEntity<List<VerificacaoDTO>> findByVeiculo(@PathVariable Integer id) {
+		List<VerificacaoDTO> verificacoesDTO = verificacaoService.findByVeiculo(id);
+		return ResponseEntity.ok().body(verificacoesDTO);
 	}
 	
 	@GetMapping("condutor/{id}")
-	public ResponseEntity<List<Verificacao>> findByCondutor(@PathVariable Integer id) {
-		List<Verificacao> verificacoes = verificacaoService.findByCondutor(id);
-		return ResponseEntity.ok().body(verificacoes);
+	public ResponseEntity<List<VerificacaoDTO>> findByCondutor(@PathVariable Integer id) {
+		List<VerificacaoDTO> verificacoesDTO = verificacaoService.findByCondutor(id);
+		return ResponseEntity.ok().body(verificacoesDTO);
 	}
 	
 	@GetMapping("/{data}")
-	public ResponseEntity<List<Verificacao>> findByData(@PathVariable String data){
-		List<Verificacao> verificacoes = verificacaoService.findByData(data);
-		return ResponseEntity.ok().body(verificacoes);
+	public ResponseEntity<List<VerificacaoDTO>> findByData(@PathVariable String data){
+		List<VerificacaoDTO> verificacoesDTO = verificacaoService.findByData(data);
+		return ResponseEntity.ok().body(verificacoesDTO);
 	}
 	
 	
