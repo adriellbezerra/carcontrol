@@ -44,7 +44,6 @@ public class VerificacaoService {
 			List<Verificacao> listaVerificacao =  verificacaoRepository.findByData(sdf.parse(data));
 			return toDTO(listaVerificacao);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
