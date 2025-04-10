@@ -37,6 +37,7 @@ public class Manutencao implements Serializable{
 	private BigDecimal valorTotal;
 	private String mecanicoResponsavel;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="manutencao", cascade = CascadeType.ALL)
 	private List<Arquivo> arquivos = new ArrayList<>();
 	

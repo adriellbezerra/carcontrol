@@ -3,6 +3,8 @@ package br.com.carcontrol.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class Arquivo implements Serializable{
 	private String descricao;
 	private String caminho;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "manutencao_id")
 	private Manutencao manutencao;

@@ -2,8 +2,8 @@ package br.com.carcontrol.domain.enuns;
 
 public enum TipoManutencao {
 	
-	PREVENTIVA(1, "Para prevenir problemas futuros"),
-	CORRETIVA(2, "Para corrigir problemas");
+	PREVENTIVA(1, "Preventiva"),
+	CORRETIVA(2, "Corretiva");
 	
 	private int cod;
 	private String descricao;
